@@ -29,4 +29,6 @@ typedef struct { //used to represent everything in the chip8 "architecture"
     unsigned char keys[16]; //chip8 uses a 4x4 keypad, status of keys is stored in a 1 byte array (0 = off/not pressed, 1 = on/pressed)
 } chip8;
 
+void initialize(chip8 *myChip8);
+
 #endif

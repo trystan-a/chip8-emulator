@@ -9,8 +9,8 @@
 int main(int agrc, char** argv) {
     SDL_Window *window;
 
-    SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("Chip8 Emulator", 640, 320, 0);
+    SDL_Init(SDL_INIT_VIDEO); //initialize SDL video
+    window = SDL_CreateWindow("Chip8 Emulator", 640, 320, 0); //create SDL window with 640x320 dimensions
 
     if(window == NULL) {
         printf("Error creating window");
@@ -19,7 +19,7 @@ int main(int agrc, char** argv) {
     
     //game loop here
 
-    SDL_DestroyWindow(window);
+    SDL_DestroyWindow(window); //cleaning up DSL
     SDL_Quit();
     return 0;
 }
