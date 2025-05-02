@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/chip8.h"
+#include "../include/chip8.h" //fix this (including an absolute path is bad practice)
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
