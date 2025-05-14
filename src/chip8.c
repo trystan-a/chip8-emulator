@@ -1,4 +1,4 @@
-#include "../include/chip8.h" //fix this (including an absolute path is bad practice)
+#include "chip8.h"
 
 void initialize(chip8 *myChip8) {
     // used to define the font of the characters
