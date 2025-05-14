@@ -44,15 +44,25 @@ void initialize(chip8 *myChip8) {
         myChip8->V[i] = 0;
     }
 
+    //clear all keys
+    for(int i = 0; i < 15; i++) {
+        myChip8->keys[i] = 0;
+    }
+
     //clear memory
     for(int i = 0; i < 4095; i++) {
         myChip8->memory[i] = 0;
     }
 
+    //clear screen
+    for(int i = 0; i < 2047; i++) {
+        myChip8->gfx[i] = 0;
+    }
+
     //load fontset
     //start loading fontset at memory location 0x050 as per memory map (80 in decimal)
     for(int i = 0; i < 80; i++) {
-        myChip8->memory[i + 0x050] = chip8Fontset[i];
+        myChip8->memory[i + (0x050 - 1)] = chip8Fontset[i];
     }
 
     //reset timers
