@@ -35,27 +35,27 @@ void initialize(chip8 *myChip8) {
     myChip8->sp = 0;
 
     //clear stack
-    for(int i = 0; i < 15; i++) {
+    for(int i = 0; i < 16; i++) {
         myChip8->stack[i] = 0;
     }
 
     //clear all registers
-    for(int i = 0; i < 15; i++) {
+    for(int i = 0; i < 16; i++) {
         myChip8->V[i] = 0;
     }
 
     //clear all keys
-    for(int i = 0; i < 15; i++) {
+    for(int i = 0; i < 16; i++) {
         myChip8->keys[i] = 0;
     }
 
     //clear memory
-    for(int i = 0; i < 4095; i++) {
+    for(int i = 0; i < 4096; i++) {
         myChip8->memory[i] = 0;
     }
 
     //clear screen
-    for(int i = 0; i < 2047; i++) {
+    for(int i = 0; i < 2048; i++) {
         myChip8->gfx[i] = 0;
     }
 
