@@ -4,8 +4,6 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
-// compile with this command for now:
-// gcc -Wall main.c chip8.c -o chip8 -lSDL3
 int main(int agrc, char** argv) {
     SDL_Window *window;
     chip8 myChip8;
@@ -19,8 +17,9 @@ int main(int agrc, char** argv) {
     }
 
     initialize(&myChip8);
+    //load rom into memory here
     
-    //game loop here
+    //emulation loop here
 
     SDL_DestroyWindow(window); //cleaning up DSL
     SDL_Quit();
