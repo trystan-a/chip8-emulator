@@ -21,5 +21,10 @@ int main(int agrc, char** argv) {
         printf("%x", myChip8.memory[i]);
     }
 
+    printf("\n\nCurrent stack contents:\n");
+    for(int i = 0; i < 16; i++) {
+        printf("%i", myChip8.stack[i]);
+    }
+
     return 0;
 }
