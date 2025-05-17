@@ -4,7 +4,10 @@ SRC = src/
 BIN = bin/
 TEST = tests/
 
-all: chip8 chip8Test
+all: bin chip8 chip8Test
+
+bin:
+	mkdir -p bin
 
 chip8.o: $(SRC)chip8.c
 	$(CC) $(CFLAGS) -c $(SRC)chip8.c -o $(BIN)chip8.o
