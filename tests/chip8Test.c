@@ -6,10 +6,12 @@
 
 //eventually replace with CUnit for unit testing, just testing functionality for now
 //current problems:
+//memory printing incorrectly (prints only one 0 if there are two 0's back to back) (i think its still correct in memory but doesnt print correctly so hard to verify)
 int main(int agrc, char** argv) {
     chip8 myChip8;
 
     initialize(&myChip8);
+    readROM(&myChip8, "roms/15PUZZLE");
 
     printf("Current opcode: %i\n", myChip8.opcode);
     printf("Current index register (I): %i\n", myChip8.I);

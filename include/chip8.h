@@ -31,4 +31,6 @@ typedef struct { //used to represent everything in the chip8 "architecture"
 
 void initialize(chip8 *myChip8);
 
+void readROM(chip8 *myChip8, char *ROM);
+
 #endif

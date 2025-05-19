@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "chip8.h"
 
 void initialize(chip8 *myChip8) {
@@ -69,4 +70,16 @@ void initialize(chip8 *myChip8) {
     //come back to this as this is probably wrong (buzzer sounds once it reaches 0)
     myChip8->delayTimer = 0;
     myChip8->soundTimer = 0;
+}
+
+void readROM(chip8 *myChip8, char *ROM) {
+    FILE *fptr = fopen(ROM, "rb");
+
+    fseek(fptr, 0, SEEK_END); //getting the size of the ROM
+    size_t ROMSize = ftell(fptr);
+
+    rewind(fptr); //rewinding ROM binary file so that I can read data into memory until the end using the size
+
+    fread(&myChip8->memory[0x200 - 1], sizeof(unsigned char), ROMSize, fptr);
+    fclose(fptr);
 }
