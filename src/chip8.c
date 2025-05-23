@@ -63,7 +63,7 @@ void initialize(chip8 *myChip8) {
     //load fontset
     //start loading fontset at memory location 0x050 as per memory map (80 in decimal)
     for(int i = 0; i < 80; i++) {
-        myChip8->memory[i + (0x050 - 1)] = chip8Fontset[i];
+        myChip8->memory[i + 0x050] = chip8Fontset[i];
     }
 
     //reset timers
@@ -80,6 +80,6 @@ void readROM(chip8 *myChip8, char *ROM) {
 
     rewind(fptr); //rewinding ROM binary file so that I can read data into memory until the end using the size
 
-    fread(&myChip8->memory[0x200 - 1], sizeof(unsigned char), ROMSize, fptr);
+    fread(&myChip8->memory[0x200], sizeof(unsigned char), ROMSize, fptr); //reading the contents of the rom delimited by size unsigned char into memory
     fclose(fptr);
 }

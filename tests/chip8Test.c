@@ -11,11 +11,11 @@ int main(int agrc, char** argv) {
     chip8 myChip8;
 
     initialize(&myChip8);
-    readROM(&myChip8, "roms/15PUZZLE");
+    //readROM(&myChip8, "roms/15PUZZLE");
 
     printf("Current opcode: %i\n", myChip8.opcode);
     printf("Current index register (I): %i\n", myChip8.I);
-    printf("Current program counter (PC): %i\n", myChip8.pc);
+    printf("Current program counter (PC): %x\n", myChip8.pc);
     printf("Current stack pointer (SP): %i\n", myChip8.sp);
 
     printf("\nCurrent memory contents:\n");
