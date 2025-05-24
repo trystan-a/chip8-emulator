@@ -11,7 +11,7 @@ int main(int agrc, char** argv) {
     chip8 myChip8;
 
     initialize(&myChip8);
-    //readROM(&myChip8, "roms/15PUZZLE");
+    readROM(&myChip8, "roms/15PUZZLE");
 
     printf("Current opcode: %i\n", myChip8.opcode);
     printf("Current index register (I): %i\n", myChip8.I);
@@ -27,6 +27,12 @@ int main(int agrc, char** argv) {
     for(int i = 0; i < 16; i++) {
         printf("%i", myChip8.stack[i]);
     }
+
+    unsigned short opcode = 0;
+
+    opcode = myChip8.memory[0x200 + 12] << 8 | myChip8.memory[0x200 + 13]; //checking individual opcodes (first opcode is at 0x200 + 0 and 0x200 + 1)
+
+    printf("\n\nCurrent opcode: %.4x", opcode);
 
     return 0;
 }

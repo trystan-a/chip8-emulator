@@ -72,8 +72,12 @@ void initialize(chip8 *myChip8) {
     myChip8->soundTimer = 0;
 }
 
-void readROM(chip8 *myChip8, char *ROM) {
+int readROM(chip8 *myChip8, char *ROM) {
     FILE *fptr = fopen(ROM, "rb");
+
+    if(fptr == NULL) {
+        return 1; //error code 1 is a file error
+    }
 
     fseek(fptr, 0, SEEK_END); //getting the size of the ROM
     size_t ROMSize = ftell(fptr);
@@ -82,4 +86,6 @@ void readROM(chip8 *myChip8, char *ROM) {
 
     fread(&myChip8->memory[0x200], sizeof(unsigned char), ROMSize, fptr); //reading the contents of the rom delimited by size unsigned char into memory
     fclose(fptr);
+
+    return 0;
 }
