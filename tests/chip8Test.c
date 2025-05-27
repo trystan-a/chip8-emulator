@@ -32,7 +32,9 @@ int main(int agrc, char** argv) {
 
     opcode = myChip8.memory[0x200 + 12] << 8 | myChip8.memory[0x200 + 13]; //checking individual opcodes (first opcode is at 0x200 + 0 and 0x200 + 1)
 
-    printf("\n\nCurrent opcode: %.4x", opcode);
+    printf("\n\nCurrent opcode: %X", opcode);
+
+    executeCycle(&myChip8);
 
     return 0;
 }

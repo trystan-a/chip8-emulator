@@ -89,3 +89,18 @@ int readROM(chip8 *myChip8, char *ROM) {
 
     return 0;
 }
+
+void executeCycle(chip8 *myChip8) {
+    //fetch opcode
+    //each opcode is stored as two bytes in memory, so we read first byte and shift the bits to the left by 8 bits
+    //then we read the next byte by using the bitwise or operator to not only read the new bits, but keep the old ones
+    myChip8->opcode = myChip8->memory[myChip8->pc] << 8 | myChip8->memory[myChip8->pc + 1];
+
+    //decode opcode
+    //using the bitwise and operator to extract the first digit of the opcode, which lets us determine what function that opcode is supposed to do
+    //some opcodes rely on more than the first opcode to determine function, use a nested switch statement for those
+    switch(myChip8->opcode & 0xF000) {
+        default:
+            printf ("\nUnknown opcode: %.4X\n", myChip8->opcode);
+    }
+}

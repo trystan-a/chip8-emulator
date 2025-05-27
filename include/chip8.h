@@ -33,4 +33,6 @@ void initialize(chip8 *myChip8);
 
 int readROM(chip8 *myChip8, char *ROM);
 
+void executeCycle(chip8 *myChip8);
+
 #endif

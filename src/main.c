@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     chip8 myChip8;
     int errorCode = 0;
     char userInput[sizeof(argv[1] + 5)] = "roms/"; //need to concatenate roms/ at beginning of rom name to access it in a different directory
-    //FIX THIS at some point as referring to path names in variables is bad practice
+    //FIX THIS at some point as referring to path names in variables is bad practice (i think)
 
     if(argc < 2) {
         printf("Invalid ROM. Input ROM name through command line arguement.");
@@ -29,15 +29,15 @@ int main(int argc, char** argv) {
 
     strcat(userInput, argv[1]); //concatenating /roms infront of rom name
 
-    errorCode = readROM(&myChip8, userInput);
+    errorCode = readROM(&myChip8, userInput); //error code will be 0 if the rom was read successfully
 
-    if(errorCode != 0) {
+    if(errorCode != 0) { //if rom name doesnt exist
         printf("Invalid ROM. Input a valid ROM name from the roms directory.");
         return 1;
     }
-    //load rom into memory here
     
     //emulation loop here
+    executeCycle(&myChip8);
 
     SDL_DestroyWindow(window); //cleaning up DSL
     SDL_Quit();
