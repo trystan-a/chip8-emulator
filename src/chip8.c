@@ -93,14 +93,44 @@ int readROM(chip8 *myChip8, char *ROM) {
 void executeCycle(chip8 *myChip8) {
     //fetch opcode
     //each opcode is stored as two bytes in memory, so we read first byte and shift the bits to the left by 8 bits
-    //then we read the next byte by using the bitwise or operator to not only read the new bits, but keep the old ones
+    //then we read the next byte by using the bitwise OR operator to not only read the new bits, but keep the old ones
     myChip8->opcode = myChip8->memory[myChip8->pc] << 8 | myChip8->memory[myChip8->pc + 1];
 
     //decode opcode
     //using the bitwise and operator to extract the first digit of the opcode, which lets us determine what function that opcode is supposed to do
     //some opcodes rely on more than the first opcode to determine function, use a nested switch statement for those
     switch(myChip8->opcode & 0xF000) {
-        default:
+        case 0x0000:
+            switch(myChip8->opcode & 0x000F) { //since there are multiple opcodes that have a 0 at the beginning, we use a nested switch statement to cover for them
+                case 0x0000: //opcode 0x00E0: clears the screen
+                    break;
+
+                case 0x000E: //opcode 0x00EE: returns from subroutine
+                    break;
+            }
+            break;
+        
+        case 0x1000: //opcode 0x1NNN: jumps to address NNN
+            break;
+
+        case 0x2000: //opcode 0x2NNN: calls subroutine at address NNN
+            break;
+
+        //add more opcode switch cases once they come up
+
+        default: //if opcode is not found
             printf ("\nUnknown opcode: %.4X\n", myChip8->opcode);
+    }
+
+    //update timers
+    if(myChip8->delayTimer > 0) {
+        myChip8->delayTimer--;
+    }
+
+    if(myChip8->soundTimer > 0) {
+        if(myChip8->soundTimer == 1) {
+            printf("Sound buzzer"); //replace with actual sound eventually
+        }
+        myChip8->soundTimer--;
     }
 }

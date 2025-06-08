@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "chip8.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
 int main(int argc, char** argv) {
     SDL_Window *window;
+    SDL_Event event;
     chip8 myChip8;
     int errorCode = 0;
+    bool isRunning = true;
     char userInput[sizeof(argv[1] + 5)] = "roms/"; //need to concatenate roms/ at beginning of rom name to access it in a different directory
     //FIX THIS at some point as referring to path names in variables is bad practice (i think)
 
@@ -36,10 +39,20 @@ int main(int argc, char** argv) {
         return 1;
     }
     
-    //emulation loop here
-    executeCycle(&myChip8);
+    //emulation loop
+    while(isRunning) {
+        while(SDL_PollEvent(&event) != 0) { //handling SDL events (only handling exit event for now)
+            switch(event.type) {
+                case SDL_EVENT_QUIT:
+                    isRunning = false;
+                    break;
+            }
+        }
 
-    SDL_DestroyWindow(window); //cleaning up DSL
+        executeCycle(&myChip8);
+    }
+
+    SDL_DestroyWindow(window); //cleaning up SDL
     SDL_Quit();
     return 0;
 }
